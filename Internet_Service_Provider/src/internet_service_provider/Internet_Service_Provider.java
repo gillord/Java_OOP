@@ -3,7 +3,7 @@ package internet_service_provider;
 import javax.swing.JOptionPane;
 /**
  * Douglas Gillory
- * 0525282
+ * 
  * Assignment 3 
  * Internet Service Provider
  *6/7/19
