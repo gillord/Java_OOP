@@ -7,7 +7,7 @@ package piglatin;
 import javax.swing.JOptionPane;
 
 /**Douglas "DJ" Gillory
- * 0525282
+ * 
  * 7/1/19
  * Java Programming
  * PigLatin
