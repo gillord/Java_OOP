@@ -7,7 +7,7 @@ package hoteloccupancy;
 import javax.swing.JOptionPane;   
 /**@author
  *  Douglas Gillory
- * 0525252
+ * 
  * 6/8/19
  * Java Programming
  * Assignment 4
