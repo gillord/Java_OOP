@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import java.util.Random;
 
 /**Douglas "DJ" Gillory
- * 0525282
+ * 
  * 7/1/19
  * Java Programming
  * Rock_Paper_Scissors
