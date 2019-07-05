@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 
 /**Doulgas "DJ" Gillory
- *0525282
+ *
  * 7/1/19
  * Freezing Boiling Points
  * Java Programming 
