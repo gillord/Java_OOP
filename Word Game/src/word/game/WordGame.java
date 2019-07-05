@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 /**
  *6/4/19
  *  DJ Gillory
- * 0525282
+ * 
  * Assignment 2- Word Game
  * Java Programming OOP      
  */
@@ -76,7 +76,7 @@ public class WordGame {
      //END OF PROGRAM 
      JOptionPane.showMessageDialog(null, "Thanks for playing.... Hope you have a Happily Ever After like " + name+ " did!!!!");     //Creates Dialog Box & Thanks user once again for playing 
       JOptionPane.showMessageDialog(null,"Assignment 2 - Word Game"  + "\nWritten by DJ Gillory" +                                   //Creates Dialog Box with
-                                                        "\n0525282" + "\n06/04/19" +  "\nJava Programming ");                                           // My info that also appears at the top as well   
+                                                       "\n06/04/19" +  "\nJava Programming ");                                           // My info that also appears at the top as well   
     }
     
 }
