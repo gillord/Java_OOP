@@ -6,7 +6,7 @@
 package worldserieschampions;
 import java.io.*;
 import java.util.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**Douglas "DJ" Gillory
  * 7/1/19
@@ -16,18 +16,15 @@ import javax.swing.JOptionPane;
  * @author DJ
  */
 public class WorldSeriesChampions {
-    
-    //Declare Variables
     public static int count = 0;
     public static String output = "";
     public static String input = "";
-
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       final String FILENAME = "WorldSeriesWinners.txt";
+        final String FILENAME = "WorldSeriesWinners.txt";
         ArrayList<String> data = new ArrayList<String>();
         
         // Read the data file
@@ -44,7 +41,8 @@ public class WorldSeriesChampions {
             } catch (IOException e) {
             }
         }
-           // Sequential search the String array and print the result
+        
+        // Sequential search the String array and print the result
         reply = JOptionPane.YES_OPTION;
         while (reply == JOptionPane.YES_OPTION) {
             count = 0;
@@ -78,7 +76,7 @@ public class WorldSeriesChampions {
     public static ArrayList<String> readData(String filename) throws IOException {
         ArrayList<String> data = new ArrayList<String>();
         
-        File file = new File(filename);
+        File file = new File("/Users/DJ/NetBeansProjects/WorldSeriesChampions/src/worldserieschampions/WorldSeriesWinners.txt");
         Scanner inputFile = new Scanner(file);
         while (inputFile.hasNext()) {
             data.add(inputFile.nextLine());
@@ -86,6 +84,7 @@ public class WorldSeriesChampions {
         inputFile.close();
         return data;
     }
+    
     /**
      * The sequentialSearch method sequential search the String 'name' in the 
      * ArrayList 'array'.
