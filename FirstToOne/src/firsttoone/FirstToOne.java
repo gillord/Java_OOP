@@ -4,125 +4,132 @@
  * and open the template in the editor.
  */
 package firsttoone;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-/**
+/**Douglas "DJ" Gillory
+ * 7/1/19
+ * 0525282
+ * Java Programming
+ * First To One Game
  *
  * @author DJ
  */
 public class FirstToOne {
-
-    /**
-     * @param args the command line arguments
-     */
     
+    /**Main Method 
+     * @param args 
+     */
    public static void main(String[] args) {
-      final int NUM_SIDES = 6;         // Number of sides on the die
-      final int STARTING_POINTS = 50;  // Number of starting points
-      String player1Name;              // First player's name
-      String player2Name;              // Second player's name
-      int round = 0;                   // Number of rounds
-      int roll1 = 0, roll2 = 0;        // Rolls of players
+     
+  //Initialize & Declare Variables & Fields
+       
+     final  int NUM_SIDES = 6;                                                            // Sides of Die from Die Class
+      final int STARTING_POINTS = 50;                                              // Number of starting points
+      String player1Name;                                                                    // First player name
+      String player2Name;                                                                   // Second player name
+      int round = 0;                                                                            // Initialize Accumulator for Games
+      int roll1 = 0;                                                                               //Initialzie Accumulator for player1
+      int roll2 = 0;                                                                               // Initialize Accumulators for player2
+      
+ 
 
-      // Create the die.
+      // Die Constructor
       Die die = new Die(NUM_SIDES);
-      // Get the player's names.
-      player1Name = JOptionPane.showInputDialog(null, 
-                   "Enter the first player's name: ");
-      player2Name = JOptionPane.showInputDialog(null, 
-                   "Enter the second player's name: ");
-      // Create the two players.
-      Player player1 = new Player(player1Name, STARTING_POINTS);
-      Player player2 = new Player(player2Name, STARTING_POINTS);
-      // Play the game until one of the player's wins.
-      while (gameInPlay(player1, player2)) {
-         // Update the number of rounds.
-         round ++;
-         // If the game is still being played,
-         // Player 1 rolls the die and takes the first turn.
-         // Player 2 rolls the die and takes a turn.
-         if (gameInPlay(player1, player2)) {
-            roll1 = takeTurn(player1, die);
-            roll2 = takeTurn(player2, die);
+     
+
+     
+    // Get the player's names.
+      player1Name= JOptionPane.showInputDialog(null,
+                         "Enter the First Player's name: ");                                   //Get the first player name
+            if (player1Name.isBlank()){                                                        //Exit if nothing entered
+                 System.exit(0);
+            }
+            
+      				
+       player2Name = JOptionPane.showInputDialog(null,
+                          "Enter the Second Player's name: ");                           //Get the second player name
+            if (player2Name .isBlank()){                                                    //Exit if nothing entered
+                System.exit(0);
+            }
+      
+     // Constructor for both players
+     Player player1 = new Player(player1Name, STARTING_POINTS);
+     Player player2 = new Player(player2Name, STARTING_POINTS);
+     
+     
+      //Play Game 
+      while (gameInPlay(player1, player2)) {                                                //Plays game until a winner is declared
+         
+          //Accumulator
+         round ++;                                                                                 
+         
+         if (gameInPlay(player1, player2)) {                                                                                                                   
+            roll1 = takeTurn(player1, die);                                                     //Player 1 rolls die                                    
+            roll2 = takeTurn(player2, die);                                                     //Player 2 rolls die             
          }
-         // Display the result of this round
-         JOptionPane.showMessageDialog(null, 
-                 "Round: " + round + 
-                 "\n\n" + player1Name + " rolled a " + roll1 +
-                 "\n\n" + player2Name + " rolled a " + roll2 +
-                 "\n\n" + player1Name + ": " + player1.getPoints() +
-                 "\n\n" + player2Name + ": " + player2.getPoints());
+         
+    //Display Output Message
+     String msg = "<html><h4 align='center'>" + "Round: " + round + "<br>" +
+                 player1Name+ " rolled a " + roll1 + "<br>" +
+                 player2Name + " rolled a " + roll2 + "<br>" +
+                 player1Name + ": " + player1.getPointP() + "<br>" +
+                 player2Name + ": " + player2.getPointP() + "</h4><html>";
+         
+   //Displays Results  
+     JOptionPane.showMessageDialog(null, msg);
       }
-      // Display the name of the winning player.
-      determineWinner(player1, player2);
+      determineWinner(player1, player2);                                         
       System.exit(0);
    }
 
    /**
-      The gameInPlay method determines if the game
-      is still in play. The method returns true
-      if the game is still being played, or false if
-      one of the players has won the game.
-      @param p1 A reference to the Player object
-             for player 1.
-      @param p2 A reference to the Player object
-             for player 2.
-      @return True if the game is still being played.
+      Game Continuity
+      @param p1 for player 1.
+      @param p2 for player 2.
+      @return True if game is still played
     */
+
    public static boolean gameInPlay(Player p1, Player p2) {
-      boolean status = false; // Set the flag to false.
-      // Determine if the game is still being played.
-      if (p1.getPoints() != 1 && p2.getPoints() != 1) {
-         status = true; // Set the flag to true.
-      }
-      // Return the status.
-      return status;
+      boolean status = false; 				// Set the flag to false.
+      if (p1.getPointP() != 1 && p2.getPointP() != 1){                                             // Determine if the game is still being played.
+         status = true;                                                                                             // Set the flag to true.
+      }return status;                                                                                               // Return the status.
+   }
+
+   
+   // Calculations 
+   /**Simulates players turn
+      @param p number of points for players
+      @param d value of die side
+      @return updates players points
+    */
+  public static int takeTurn(Player p, Die d) {
+      d.roll();                                                                                                     //Roll die
+      if (p.getPointP() - d.getValue() < 1) {                                                         //Determine players points are less than one                                                                                                                                                                                                                                           
+        p.setPointP(p.getPointP() + d.getValue());                                              //If so, add to player's points                           
+      } else {                                                                                                      
+         p.setPointP(p.getPointP() - d.getValue());                                             //otherwise subtract the value                   
+      } return d.getValue();                                                                                //return the value
    }
 
    /**
-      The takeTurn method simulates a player's turn.
-      @param p A reference to a Player object.
-      @param d A reference to a Die object.
-      @return The roll of the player.
+      Displays the Winner
+      @param p1 for player 1.
+      @param p2 for player 2.
     */
-   public static int takeTurn(Player p, Die d) {
-      d.roll();   // Roll the die.
-      // Determine if the player's points are less than the
-      // number of points needed to win.
-      if (p.getPoints() - d.getValue() < 1) {
-         // If so, add the value to the player's points.
-         p.setPoints(p.getPoints() + d.getValue());
-      }
-      else {
-         // Subtract the value from the player's points.
-         p.setPoints(p.getPoints() - d.getValue());
-      }
-      return d.getValue();
-   }
 
-   /**
-      The determineWinner method displays the winner
-      of the game.
-      @param p1 A reference to the Player object
-             for player 1.
-      @param p2 A reference to the Player object
-             for player 2.
-    */
-   public static void determineWinner(Player p1, Player p2) {
-      // Determine if player 1 has won the game.
-      if (p1.getPoints() == 1) {
-         // If so, display a message declaring player 1
-         // as the winner.
-         JOptionPane.showMessageDialog(null, 
-                 p1.getName() + " is the winner!");
-      }
-      else {
-         // Display a message declaring player 2 as the winner.
-         JOptionPane.showMessageDialog(null, 
-                 p2.getName() + " is the winner!");
+   public static void determineWinner(Player p1, Player p2){
+      if (p1.getPointP() == 1){				// Determine if player 1 has won the game.
+         JOptionPane.showMessageDialog(null,			// If so, display a message declaring player 1
+         p1.getName() + " is the winner!");				// as the winner.															
+      }else{
+         JOptionPane.showMessageDialog(null,			// Display a message declaring player 2 
+         p2.getName() + " is the winner!");				//as the winner.
       }
    }
-}
-    
-    
+   }
 
+/** Please note the following code was based from  
+ * Gaddis, Tony. Starting Out with Java. 3rd Edition
+ * Provided by Professor
+ * /
